@@ -32,7 +32,6 @@ async def main():
     async with asyncio.TaskGroup() as tg:
         for msg in msgs:
             subject = utils.decode(msg.get('Subject'))  
-            print(subject)
             if bool(re.match(settings.pattern, subject)):
                 task = tg.create_task(thread.create_task(msg))
     print("---Finished---")

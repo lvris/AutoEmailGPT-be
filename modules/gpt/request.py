@@ -15,7 +15,7 @@ async def create_req(prompt) -> Completion:
         messages=[
             {
                 "role": "system",
-                "content": "You are a python teacher.",
+                "content": "你是一位 Python 老师, 接下来我将给出你一份 Python 代码, 请指出其中存在的问题",
             },
             {
                 "role": "user",
