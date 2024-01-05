@@ -55,9 +55,13 @@ async def create_task(msg, server):
 
     except Exception as e:
         print(f"Error while processing {utils.decode(msg.get('Subject'))}: {e}")
+        error = f"同学, 你发送的邮件未被系统正确处理, 请检查后重新发送.\n可能的错误是: {e}"
+        if not os.path.exists(feedback_dir):
+            os.makedirs(feedback_dir)
+        io.write_file(os.path.join(feedback_dir, "error.md"), error)
         send.create_mail(
             server,
             msg.get('From'),
             "(处理失败)Re: "+subject,
-            f"同学, 你发送的邮件未被系统正确处理, 请检查后重新发送.\n可能的错误是: {e}"
+            error
         )
