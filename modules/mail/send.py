@@ -1,5 +1,3 @@
-import settings
-
 from markdown2 import markdown
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -21,11 +19,11 @@ def create_mail(server, to_addr, subject, markdown_text):
     
     server.send_message(message)
 
-if __name__ == "__main__":
-    server = connect_to_smtp(
-        settings.smtp_server, 
-        settings.smtp_port, 
-        settings.username, 
-        settings.password
-    )
-    create_mail(server, settings.username, "Hello, World")
+# if __name__ == "__main__":
+    # server = connect_to_smtp(
+    #     settings.smtp_server, 
+    #     settings.smtp_port, 
+    #     settings.username, 
+    #     settings.password
+    # )
+    # create_mail(server, settings.username, "Hello, World")
