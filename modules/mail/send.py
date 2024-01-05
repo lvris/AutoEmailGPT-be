@@ -1,6 +1,6 @@
 import settings
 
-import markdown2
+from markdown2 import markdown
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -16,7 +16,7 @@ def create_mail(server, to_addr, subject, markdown_text):
     message['To'] = to_addr
     message['Subject'] = subject
 
-    html_content = markdown2.markdown(markdown_text)
+    html_content = markdown(markdown_text, extras=["fenced-code-blocks"])
     message.attach(MIMEText(html_content, 'html'))
     
     server.send_message(message)

@@ -14,7 +14,7 @@ from datetime import datetime
 with open('./logs/runtime/log.txt', 'r') as file:
     lines = file.readlines()
     last_timestamp = float(lines[-1] if lines else 1704000000)
-last_timestamp = 1700000000 ### Debug
+last_timestamp = 1704000000 ### Debug
 with open('./logs/runtime/log.txt', 'a') as file:
     now_timestamp = datetime.now().timestamp()
     file.writelines(str(now_timestamp)+'\n')
@@ -42,7 +42,7 @@ async def main():
         for msg in msgs:
             subject = utils.decode(msg.get('Subject'))  
             if bool(re.match(settings.pattern, subject)):
-                task = tg.create_task(thread.create_task(msg, server))
+                tg.create_task(thread.create_task(msg, server))
     print("---Finished---")
     server.quit()
 
