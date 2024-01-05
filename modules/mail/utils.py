@@ -15,7 +15,7 @@ def decode(header: str):
     else:
         return value
 
-def download_attachment(msg, foldername):
+async def download_attachment(msg, foldername):
     for part in msg.walk(): 
         if part.get_content_disposition() == 'attachment':
             # Download
@@ -23,7 +23,8 @@ def download_attachment(msg, foldername):
             attachment_content = part.get_payload(decode=True)  
             # Create
             attachment_folder = './logs/homework/' + foldername + '/'
-            os.makedirs(attachment_folder)
+            if not os.path.exists(attachment_folder):
+                os.makedirs(attachment_folder)
             attachment_file = open(attachment_folder + attachment_name, 'wb')
             attachment_file.write(attachment_content) 
             attachment_file.close()

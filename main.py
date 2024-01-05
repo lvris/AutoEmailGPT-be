@@ -3,6 +3,7 @@ from modules.mail import fetch
 from modules.mail import utils
 from modules.file import thread
 
+import re
 import asyncio
 import datetime
 from datetime import datetime
@@ -12,7 +13,7 @@ from datetime import datetime
 with open('./logs/runtime/log.txt', 'r') as file:
     lines = file.readlines()
     last_timestamp = float(lines[-1] if lines else 1704000000)
-last_timestamp = 1704000000 # Debug
+last_timestamp = 1700000000 # Debug
 with open('./logs/runtime/log.txt', 'a') as file:
     now_timestamp = datetime.now().timestamp()
     file.writelines(str(now_timestamp)+'\n')
@@ -32,9 +33,8 @@ async def main():
         for msg in msgs:
             subject = utils.decode(msg.get('Subject'))  
             print(subject)
-            if subject is good:
-                utils.download_attachment(msg, subject)
-                thread.new_task(subject, msg.get('Email'))
-    print("Finished")
+            if bool(re.match(settings.pattern, subject)):
+                task = tg.create_task(thread.create_task(msg))
+    print("---Finished---")
 
 asyncio.run(main())
