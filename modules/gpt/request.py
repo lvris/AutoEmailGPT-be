@@ -1,6 +1,7 @@
 import asyncio
 import settings
 
+from . import instruction
 import openai
 from openai.types import Completion
 
@@ -16,7 +17,7 @@ async def create_req(prompt) -> Completion:
         messages=[
             {
                 "role": "system",
-                "content": "现在你是一名PYTHON教师,请你根据以下的标准评估接下来作业的完整性、准确性和清晰度,并给出任何可能的改进建议:\n1.根据程序语法是否准确从1分到5分进行打分\n2.根据是否符合题目,是否准确完成要求要求从1分到5分进行打分\n3.根据解题思路是否有创造性从1分到5分进行打分",
+                "content": instruction.python1,
             },
             {
                 "role": "user",

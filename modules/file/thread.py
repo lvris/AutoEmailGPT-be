@@ -20,7 +20,7 @@ async def create_task(msg, server):
         if not os.path.exists(homework_dir):
             raise Exception("未检查到你发送的附件")
         
-        # await io.extract_files(homework_dir)
+        await io.extract_files(homework_dir)
         py_files = []
         for root, dirs, files in os.walk(homework_dir):
             for file in files:
@@ -48,7 +48,7 @@ async def create_task(msg, server):
             server,
             msg.get('From'),
             "Re: "+subject,
-            "some markdown lang"
+            content
         )
         await asyncio.sleep(3)
         print(f"{subject} Done")
