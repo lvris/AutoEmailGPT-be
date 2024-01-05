@@ -16,7 +16,7 @@ def read_file(file_path) -> str:
     return file_content
 
 def write_file(file_path, content) -> None:
-    with open(file_path, "w") as file:
+    with open(file_path, "w", encoding="utf-8") as file:
         file.writelines(content)
 
 # Test

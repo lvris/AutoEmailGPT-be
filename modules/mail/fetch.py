@@ -31,10 +31,11 @@ def fetch_emails(server, start_timestamp, end_timestamp):
         print(f"Sum: {num_messages}")
         
         emails = []
+        date_format = '%a, %d %b %Y %H:%M:%S %z'
         for i in range(num_messages, 0, -1):
             msg = utils.get_msg(server, i)
-            msg_timestamp = datetime.strptime(
-                msg.get('Date'), '%a, %d %b %Y %H:%M:%S %z').timestamp()
+            msg_raw = msg.get('Date').split('(')[0].strip()
+            msg_timestamp = datetime.strptime(msg_raw, date_format).timestamp()
             print(f"The {i} mail, message time: {msg_timestamp}")
 
             if msg_timestamp >= end_timestamp:
