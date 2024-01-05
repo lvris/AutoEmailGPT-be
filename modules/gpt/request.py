@@ -9,23 +9,25 @@ client = openai.AsyncOpenAI(
     base_url=settings.gpt_server
 )
 
-async def create_req() -> Completion:
+async def create_req(prompt) -> Completion:
     return await client.chat.completions.create(
+        model="gpt-3.5-turbo",
         messages=[
             {
+                "role": "system",
+                "content": "You are a python teacher.",
+            },
+            {
                 "role": "user",
-                "content": "Say this is a test",
+                "content": prompt,
             }
         ],
-        model="gpt-3.5-turbo",
     )
 
+# Test
 async def test():
-    completion = await create_req()
-    print(completion)
+    completion = await create_req("这句语句存在什么问题:print(\"Hello, world!)")
     print("```")
     print(completion.choices[0].message.content)
-
 if __name__ == "__main__":
-    print("hello?")
     asyncio.run(test())
