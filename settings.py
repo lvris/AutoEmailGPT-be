@@ -1,8 +1,0 @@
-username = 'lvris233@163.com'
-password = 'PJIKJQNZJJWDOLTA'
-pop3_server = 'pop.163.com'
-smtp_server = 'smtp.163.com'
-smtp_port = '465'
-gpt_server = 'https://chat.lvris.com/chat2api/v1'
-gpt_apikey = 'pk-vv7rP9NY7aRecHgX6mzVDGbstyIdWLi7o-mh1io24Ps'
-pattern = 'r'Python.+'

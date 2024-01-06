@@ -27,7 +27,7 @@ def route(app):
     @app.route('/run', methods=['POST'])
     def run_script():
         try:
-            data = request.form
+            data = request.json
             once = data.get('once')
             interval = data.get('interval')
 
